@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <span><a [routerLink]="['/home']" routerLinkActive="router-link-active" class="white">Corp Linker</a></span>
+  <span class="example-spacer"></span>
+  <button mat-button [routerLink]="['/home']" routerLinkActive="router-link-active" >Inicio</button>
+  <button mat-button [matMenuTriggerFor]="usuarios">Usuarios</button>
+  <mat-menu #usuarios="matMenu" xPosition="before">
+    <button mat-menu-item [routerLink]="['/list-user']" routerLinkActive="router-link-active">Listado</button>
+    <button mat-menu-item [routerLink]="['/add-user']" routerLinkActive="router-link-active">Agregar</button>
+  </mat-menu>
+
+  <!-- <button mat-button [matMenuTriggerFor]="empresas">Empresas</button>
+  <mat-menu #empresas="matMenu" xPosition="before">
+    <button mat-menu-item [routerLink]="['/list-company']" routerLinkActive="router-link-active">Listado</button>
+  </mat-menu> -->
+
+  <button mat-button [matMenuTriggerFor]="roles">Roles</button>
+  <mat-menu #roles="matMenu" xPosition="before">
+    <button mat-menu-item [routerLink]="['/list-rol']" routerLinkActive="router-link-active">Listado</button>
+    <button mat-menu-item [routerLink]="['/add-rol']" routerLinkActive="router-link-active">Agregar</button>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="user"><mat-icon>account_circle</mat-icon></button>
+  <mat-menu #user="matMenu" xPosition="before">
+    <span mat-menu-item disabled>{{ data[0]?.name }} {{ data[0]?.last_name }}</span>
+    <button mat-menu-item (click)="logout()" ><mat-icon>logout</mat-icon><span>Cerrar sesión</span></button>
+  </mat-menu>
+
+</mat-toolbar>

@@ -1,0 +1,25 @@
+<app-sidebar></app-sidebar>
+<div class="container pt-5">
+  <h1 class="title"><strong>Agregar nuevo</strong></h1>
+
+
+  <form [formGroup]="roleForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Rol</mat-label>
+      <input matInput placeholder="Rol" type="text" formControlName="name">
+    </mat-form-field>
+    <div class="mb-3">
+      <mat-slide-toggle formControlName="isAdmin" (change)="toggleChecked()">Es administrador: {{isChecked}}</mat-slide-toggle>
+
+    </div>
+
+
+  </form>
+
+  <div class="button-container">
+    <ng-container>
+      <button mat-stroked-button class="blur" (click)="addRol()">Agregar</button>
+    </ng-container>
+  </div>
+
+</div>

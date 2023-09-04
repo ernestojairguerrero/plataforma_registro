@@ -1,0 +1,28 @@
+img {
+  width: 250px;
+  height: 250px;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--blur);
+}
+
+a {
+  color: black !important;
+  font-weight: normal;
+}
+
+.check_circle {
+  color: var(--success) !important;
+}
+
+textarea {
+  font-size: .8rem;
+}
+
+.excel-desc {
+  max-height: 550px;
+  overflow: auto;
+}

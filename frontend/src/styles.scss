@@ -1,0 +1,117 @@
+/* You can add global styles to this file, and also import other style files */
+/** Ionic CSS Variables **/
+:root {
+  /** success **/
+  --success: #2dd36f;
+  --success-rgb: 45, 211, 111;
+  --success-contrast: #ffffff;
+  --success-contrast-rgb: 255, 255, 255;
+  --success-shade: #28ba62;
+  --success-tint: #42d77d;
+
+  /** success **/
+  --danger: #eb445a;
+  --danger-rgb: 235, 68, 90;
+  --danger-contrast: #ffffff;
+  --danger-contrast-rgb: 255, 255, 255;
+  --danger-shade: #cf3c4f;
+  --danger-tint: #ed576b;
+
+  /** white **/
+  --white: #ffffff;
+  --white-rgb: 255, 255, 255;
+  --white-contrast: #000000;
+  --white-contrast-rgb: 0, 0, 0;
+  --white-shade: #e0e0e0;
+  --white-tint: #ffffff;
+
+    /** orange **/
+  --orange: #de731b;
+	--orange-rgb: 222,115,27;
+	--orange-contrast: #000000;
+	--orange-contrast-rgb: 0,0,0;
+	--orange-shade: #e0e0e0;
+	--orange-tint: #e18132;
+
+
+
+  --blur: #3F51B5;
+  --gray: #b0b1b8;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-button-toggle-group {
+  border: 0px !important;
+}
+
+.success {
+  background-color: var(--success) !important;
+  color: var(--success-contrast) !important;
+}
+
+.danger {
+  background-color: var(--danger) !important;
+  color: var(--danger-contrast) !important;
+}
+.orange {
+  background-color: var(--orange) !important;
+  color: var(--orange-shade) !important;
+}
+.blur {
+  background-color: var(--blur) !important;
+  color: #FFF !important;
+}
+.blur-color {
+  color: var(--blur) !important;
+}
+
+.gray{
+  color: var(--gray) !important;
+}
+
+.logoEmpresa{
+  width: 5rem;
+}
+
+th, td {
+  border: 1px solid var(--blur);
+  text-align: center;
+  padding: 8px;
+}
+
+.flex{
+  width: 100%;
+  height: auto;
+  min-height: 4rem;
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+}
+.header-encabezado{
+  background-color: var(--blur) !important;
+  color: var(--danger-contrast) !important;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray);
+  border-radius: 10px !important;
+}
+

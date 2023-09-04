@@ -1,0 +1,73 @@
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Información de empresa</h1>
+    </div>
+
+    <div class="col-md-6 botones text-end">
+
+      <ng-container *ngIf="!company; else noData">
+        <mat-button-toggle-group>
+          <mat-button-toggle class="blur" (click)="addCompany()">Guardar</mat-button-toggle>
+
+        </mat-button-toggle-group>
+      </ng-container>
+      <ng-template #noData>
+        <mat-button-toggle-group>
+          <mat-button-toggle class="blur" (click)="editCompany(company?.id)">Modificar</mat-button-toggle>
+          <!-- <mat-button-toggle class="success" (click)="updateStepEdit(dataUser[0].id, 1)">Siguiente</mat-button-toggle> -->
+        </mat-button-toggle-group>
+      </ng-template>
+
+    </div>
+  </div>
+  <form [formGroup]="companyForm" class="row">
+    <div class="mb-3 col-md-6">
+      <label for="slog" class="form-label">Logo empresa<b>*</b></label>
+      <input type="file" class="form-control" id="slog" (change)="onSlogSelected($event)" accept="image/jpeg, image/png, image/jpg, image/gif">
+      <div *ngIf="company">
+        <a [href]="company?.slog">Descargar logo de empresa</a>
+      </div>
+    </div>
+    <div class="mb-3 col-md-6">
+      <label for="name" class="form-label">Nombre empresa<b>*</b></label>
+      <input type="text" class="form-control" id="name" placeholder="X Lta." formControlName="business_name">
+    </div>
+    <div class="mb-3 col-md-6">
+      <label for="nit" class="form-label">RUC<b>*</b></label>
+      <input type="text" class="form-control" id="nit" placeholder="10122012334-5" formControlName="nit">
+    </div>
+    <div class="mb-3 col-md-6">
+      <label for="email" class="form-label">Correo eléctronico<b>*</b></label>
+      <input type="email" class="form-control" id="email" placeholder="x@example.com" formControlName="email">
+    </div>
+    <div class="mb-3 col-md-6">
+      <label for="user" class="form-label">Usuario*</label>
+      <input type="text" class="form-control" id="user" placeholder="xxxxxx06" formControlName="user">
+    </div>
+    <div class="mb-3 col-md-6">
+      <label for="password" class="form-label">Contraseña<b>*</b></label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+    </div>
+    <div class="mb-3 col-md-6">
+      <label for="company_category" class="form-label">Categoria empresa<b>*</b></label>
+      <input type="text" class="form-control" id="company_category" placeholder="Informatica" formControlName="company_category">
+    </div>
+    <div class="mb-3 col-md-6">
+      <label for="signature" class="form-label">Firma<b>*</b></label>
+      <input type="file" class="form-control" id="signature" (change)="onSignatureSelected($event)" accept="image/jpeg, image/png, image/jpg, image/gif">
+      <div *ngIf="company">
+        <a [href]="company?.signature">Descargar firma</a>
+      </div>
+    </div>
+    <div class="mt-5 mb-3 col-md-6">
+      <label for="description_user" class="form-label"><cite>Puede agregar su observación aquí (<b>Opcional</b>)</cite></label>
+      <textarea class="form-control" id="description_user" rows="3" formControlName="description_user"></textarea>
+    </div>
+    <div class="mt-5 mb-3 col-md-6">
+      <label for="description_admin" class="form-label"><cite>Observación de tus datos</cite></label>
+      <textarea readonly class="form-control" id="description_admin" rows="3">{{ company?.description_admin }}</textarea>
+    </div>
+  </form>
+
+</div>

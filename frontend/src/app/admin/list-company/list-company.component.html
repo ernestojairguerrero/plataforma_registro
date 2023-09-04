@@ -1,0 +1,77 @@
+<app-sidebar></app-sidebar>
+
+<div class="container pt-5">
+  <div class="row">
+    <h1 class="title"><strong>Listado empresa</strong></h1>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar</mat-label>
+      <input matInput type="text">
+      <button matSuffix mat-icon-button aria-label="Clear">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="header-encabezado">#</th>
+          <th scope="col" class="header-encabezado">LOGO</th>
+          <th scope="col" class="header-encabezado">NIT</th>
+          <th scope="col" class="header-encabezado">NOMBRE</th>
+          <th scope="col" class="header-encabezado">CORREO ELECTRONICO</th>
+          <th scope="col" class="header-encabezado">CATEGORIA</th>
+          <th scope="col" class="header-encabezado">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companies">
+          <th scope="row">
+            <div class="flex">
+              1
+            </div>
+          </th>
+          <td>
+            <div class="flex">
+              <img class="img-fluid logoEmpresa" src="{{ company.slog }}" alt="Logo Empresa">
+              <a href="{{ company.slog }}" type="download">Imagen</a>
+            </div>
+          </td>
+          <td>
+            <div class="flex">
+              {{ company.business_name }}
+            </div>
+          </td>
+          <td>
+            <div class="flex">
+              {{ company.nit }}
+            </div>
+          </td>
+          <td>
+            <div class="flex">
+              {{ company.email }}
+            </div>
+          </td>
+          <td>
+            <div class="flex">
+              {{ company.company_category }}
+            </div>
+          </td>
+          <td>
+            <div class="flex">
+              <mat-button-toggle-group #group="matButtonToggleGroup">
+                <mat-button-toggle  class="success">
+                  <mat-icon>edit</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle class="danger">
+                  <mat-icon>delete</mat-icon>
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

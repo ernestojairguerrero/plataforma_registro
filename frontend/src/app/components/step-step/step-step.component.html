@@ -1,0 +1,113 @@
+<div class="container pt-3">
+  <div class="step circle-with-line">
+    <ng-container *ngIf="dataCompany; else noCompany">
+      <span class="circle" [ngClass]="dataCompany?.user_id === data[0].id ? 'blur' : ''">1</span>
+      <span class="line" [ngClass]="dataCompany?.user_id === data[0].id ? 'blur' : ''"></span>
+    </ng-container>
+
+    <ng-template #noCompany>
+      <span class="circle">1</span>
+      <span class="line"></span>
+    </ng-template>
+
+  </div>
+  <div class="step circle-with-line">
+    <ng-container *ngIf="dataClient; else noClient">
+      <span class="circle" [ngClass]="dataClient?.user_id === data[0].id ? 'blur' : ''">2</span>
+      <span class="line" [ngClass]="dataSupplier?.user_id === data[0].id ? 'blur' : ''"></span>
+    </ng-container>
+
+    <ng-template #noClient>
+      <span class="circle">2</span>
+      <span class="line"></span>
+    </ng-template>
+
+  </div>
+  <div class="step circle-with-line">
+    <ng-container *ngIf="dataSupplier; else noSupplier">
+      <span class="circle" [ngClass]="dataSupplier?.user_id === data[0].id ? 'blur' : ''">3</span>
+      <span class="line" [ngClass]="dataRetention?.user_id === data[0].id ? 'blur' : ''"></span>
+    </ng-container>
+
+    <ng-template #noSupplier>
+      <span class="circle">3</span>
+      <span class="line"></span>
+    </ng-template>
+  </div>
+
+  <div class="step circle-with-line">
+    <ng-container *ngIf="dataRetention; else noRetention">
+      <span class="circle" [ngClass]="dataRetention?.user_id === data[0].id ? 'blur' : ''">4</span>
+      <span class="line" [ngClass]="dataProductServices?.user_id === data[0].id ? 'blur' : ''"></span>
+    </ng-container>
+
+    <ng-template #noRetention>
+      <span class="circle">4</span>
+      <span class="line"></span>
+    </ng-template>
+  </div>
+  <div class="step circle-with-line">
+    <ng-container *ngIf="dataProductServices; else noProductService">
+      <span class="circle" [ngClass]="dataProductServices?.user_id === data[0].id ? 'blur' : ''">5</span>
+      <span class="line" [ngClass]="dataEmployed?.user_id === data[0].id ? 'blur' : ''"></span>
+    </ng-container>
+
+    <ng-template #noProductService>
+      <span class="circle">5</span>
+      <span class="line"></span>
+    </ng-template>
+  </div>
+  <div class="step circle-with-line">
+    <ng-container *ngIf="dataEmployed; else noEmployed">
+      <span class="circle" [ngClass]="dataEmployed?.user_id === data[0].id ? 'blur' : ''">6</span>
+      <span class="line" [ngClass]="dataPayrollConcept?.user_id === data[0].id ? 'blur' : ''"></span>
+    </ng-container>
+
+    <ng-template #noEmployed>
+      <span class="circle">6</span>
+      <span class="line"></span>
+    </ng-template>
+  </div>
+  <div class="step circle-with-line">
+    <ng-container *ngIf="dataPayrollConcept; else noPayrollConcept">
+      <span class="circle" [ngClass]="dataPayrollConcept?.user_id === data[0].id ? 'blur' : ''">7</span>
+      <span class="line" [ngClass]="dataBank?.user_id === data[0].id ? 'blur' : ''"></span>
+    </ng-container>
+
+    <ng-template #noPayrollConcept>
+      <span class="circle">7</span>
+      <span class="line"></span>
+    </ng-template>
+  </div>
+  <div class="step circle-with-line">
+    <ng-container *ngIf="dataBank; else noBank">
+      <span class="circle" [ngClass]="dataBank?.user_id === data[0].id ? 'blur' : ''">8</span>
+      <span class="line" [ngClass]="dataAccountPlan?.user_id === data[0].id ? 'blur' : ''"></span>
+    </ng-container>
+
+    <ng-template #noBank>
+      <span class="circle">8</span>
+      <span class="line"></span>
+    </ng-template>
+  </div>
+  <div class="step circle-with-line">
+    <ng-container *ngIf="dataAccountPlan; else noAccountPlan">
+      <span class="circle" [ngClass]="dataAccountPlan?.user_id === data[0].id ? 'blur' : ''">9</span>
+      <span class="line" [ngClass]="dataUserProfile?.user_id === data[0].id ? 'blur' : ''"></span>
+    </ng-container>
+
+    <ng-template #noAccountPlan>
+      <span class="circle">9</span>
+      <span class="line"></span>
+    </ng-template>
+  </div>
+  <div class="step circle-with-line">
+    <ng-container *ngIf="dataUserProfile; else noUserProfile">
+      <span class="circle" [ngClass]="dataUserProfile?.user_id === data[0].id ? 'blur' : ''">10</span>
+    </ng-container>
+
+    <ng-template #noUserProfile>
+      <span class="circle">10</span>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<app-sidebar></app-sidebar>
+
+<div class="container pt-5">
+  <div class="row">
+    <h1 class="title"><strong>Listado usuario</strong></h1>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar</mat-label>
+      <input matInput type="text">
+      <button matSuffix mat-icon-button aria-label="Clear">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="header-encabezado">#</th>
+          <th scope="col" class="header-encabezado">NOMBRE</th>
+          <th scope="col" class="header-encabezado">APELLIDO</th>
+          <th scope="col" class="header-encabezado">CORREO ELECTRONICO</th>
+          <th scope="col" class="header-encabezado">ROL</th>
+          <th scope="col" class="header-encabezado">ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <th scope="row">
+            <div class="flex">
+              1
+            </div>
+          </th>
+          <td>
+            <div class="flex">
+              {{ user.name }}
+            </div>
+          </td>
+          <td>
+            <div class="flex">
+              {{ user.last_name }}
+            </div>
+          </td>
+          <td>
+            <div class="flex">
+              {{ user.email }}
+            </div>
+          </td>
+          <td>
+            <div class="flex">
+              {{ user.role.name }}
+            </div>
+          </td>
+          <td>
+            <div class="flex">
+              <mat-button-toggle-group #group="matButtonToggleGroup">
+                <mat-button-toggle  class="success">
+                  <mat-icon>edit</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle (click)="userDelete(user.id)" *ngIf="user.role.isAdmin !== 1" class="danger">
+                  <mat-icon>delete</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle *ngIf="user.role.isAdmin !== 1" class="orange" [routerLink]="['/detail-user', user.id]" routerLinkActive="router-link-active" >
+                  <mat-icon>travel_explore</mat-icon>
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

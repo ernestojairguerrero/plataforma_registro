@@ -1,0 +1,568 @@
+<app-sidebar></app-sidebar>
+<div class="container mt-5">
+
+  <div class="row">
+    <div class="col-md-5 excel-desc">
+
+      <h1 class="title"><strong>Detalle del usuario: <h2> {{ dataUser?.last_name }} {{ dataUser?.name }}</h2></strong>
+      </h1>
+
+      <div class="row pb-2">
+        <div class="col-md-12">
+          <ng-container *ngIf="dataUser?.active === 1; else noActive">
+            <button  mat-stroked-button (click)="desactiveUser(dataUser?.id, 0)">
+              Desactivar
+            </button>
+          </ng-container>
+
+          <ng-template #noActive>
+            <button  mat-stroked-button (click)="activeUser(dataUser?.id, 1)">
+              Activar
+            </button>
+          </ng-template>
+        </div>
+      </div>
+
+      <span>Estado actual:
+        <h3 *ngIf="dataUser?.step === 0"><b>Empresa</b></h3>
+        <h3 *ngIf="dataUser?.step === 1"><b>Clientes</b></h3>
+        <h3 *ngIf="dataUser?.step === 2"><b>Proveedores</b></h3>
+        <h3 *ngIf="dataUser?.step === 3"><b>Retenciones</b></h3>
+        <h3 *ngIf="dataUser?.step === 4"><b>Productos y servicios</b></h3>
+        <h3 *ngIf="dataUser?.step === 5"><b>Empleados</b></h3>
+        <h3 *ngIf="dataUser?.step === 6"><b>Conceptos de nomina</b></h3>
+        <h3 *ngIf="dataUser?.step === 7"><b>Bancos</b></h3>
+        <h3 *ngIf="dataUser?.step === 8"><b>Plan de cuentas</b></h3>
+        <h3 *ngIf="dataUser?.step === 9"><b>Usuarios y perfiles</b></h3>
+        <h3 *ngIf="dataUser?.step === 10"><b>Completo</b></h3>
+      </span>
+
+      <img class="img-fluid rounded" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        alt="Photo of a Shiba Inu">
+
+      <div class="row">
+
+        <!-- EMPRESA -->
+        <dd class="col-md-12 mt-3">
+          <ng-container *ngIf="dataCompany; else noCompany">
+            <div class="row">
+              <div class="col-md-2">
+                <h2>Empresa</h2>
+              </div>
+              <div class="col-md-10 text-end">
+                <button class="blur" (click)="companyDescriptionAdmin(dataClient?.id)" mat-mini-fab
+                  aria-label="Example icon button with a home icon">
+                  <mat-icon>save</mat-icon>
+                </button>
+                <button class="success ms-2" (click)="updateStepEdit(dataUser?.id, 0)" mat-mini-fab
+                  aria-label="Example icon button with a home icon">
+                  <mat-icon>cached</mat-icon>
+                </button>
+              </div>
+              <div class="col-md-12">
+                <div class="row mt-3">
+        <dt class="col-md-4">
+          <h2>Ruc:</h2>
+        </dt>
+        <dd class="col-md-8" *ngIf="dataCompany">
+          <ng-container *ngIf="dataCompany?.nit; else noNit">
+            {{ dataCompany?.nit }}
+          </ng-container>
+          <ng-template #noNit>
+            0
+          </ng-template>
+        </dd>
+
+        <dt class="col-md-4">
+          <h2>Email:</h2>
+        </dt>
+        <dd class="col-md-8" *ngIf="dataCompany">
+          <ng-container *ngIf="dataCompany?.email else noEmail">
+            {{ dataCompany?.email }}
+          </ng-container>
+          <ng-template #noEmail>
+            0
+          </ng-template>
+        </dd>
+
+        <dt class="col-md-4">
+          <h2>Usuario:</h2>
+        </dt>
+        <dd class="col-md-8" *ngIf="dataCompany">
+          <ng-container *ngIf="dataCompany?.user else noUser">
+            {{ dataCompany?.user }}
+          </ng-container>
+          <ng-template #noUser>
+            0
+          </ng-template>
+        </dd>
+
+        <dt class="col-md-4">
+          <h2>Contraseña:</h2>
+        </dt>
+        <dd class="col-md-8" *ngIf="dataCompany">
+          <ng-container *ngIf="dataCompany?.password else noPassword">
+            {{ dataCompany?.password }}
+          </ng-container>
+          <ng-template #noPassword>
+            0
+          </ng-template>
+        </dd>
+
+        <dt class="col-md-4">
+          <h2>Categoría empresa:</h2>
+        </dt>
+        <dd class="col-md-8" *ngIf="dataCompany">
+          <ng-container *ngIf="dataCompany?.company_category else noCategory">
+            {{ dataCompany?.company_category }}
+          </ng-container>
+          <ng-template #noCategory>
+            0
+          </ng-template>
+        </dd>
+
+        <dt class="col-md-4">
+          <h2>Firma:</h2>
+        </dt>
+        <dd class="col-md-8" *ngIf="dataCompany">
+          <ng-container *ngIf="dataCompany?.signature else noSignature">
+            <a [href]="dataCompany?.signature" download>Descargar firma</a>
+          </ng-container>
+          <ng-template #noSignature>
+            0
+          </ng-template>
+        </dd>
+
+      </div>
+
+
+    </div>
+    <div class="col-md-12">
+      <label for="description_user" class="form-label"><cite>Puede agregar su observación
+          aquí(<b>Opcional</b>)</cite></label>
+      <textarea class="form-control" id="description_user" rows="3"
+        readOnly>{{ dataCompany?.description_user }}</textarea>
+    </div>
+    <div class="col-md-12">
+      <form [formGroup]="companyForm">
+        <label for="description_admin" class="form-label"><cite>Observación de tus datos</cite></label>
+        <textarea class="form-control" id="description_admin" formControlName="description_admin" rows="3"></textarea>
+      </form>
+    </div>
+  </div>
+  </ng-container>
+  <ng-template #noCompany>
+    <h2>Empresa</h2>
+    <cite>Sin información</cite>
+  </ng-template>
+  </dd>
+
+</div>
+
+</div>
+
+<div class="col-md-7 excel-desc">
+  <dl class="row">
+
+    <!-- CLIENTES -->
+    <dd class="col-md-12">
+      <ng-container *ngIf="dataClient && dataClient?.file; else noClient">
+        <div class="row">
+          <div class="col-md-2">
+            <h2>Cliente</h2>
+          </div>
+          <div class="col-md-5">
+            <a mat-stroked-button [href]=" dataClient?.file" download>
+              <span>Descargar</span>
+              <mat-icon class="check_circle">check_circle</mat-icon>
+            </a>
+          </div>
+          <div class="col-md-5 text-end">
+            <button class="blur" (click)="clientsDescriptionAdmin(dataClient?.id)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button class="success ms-2" (click)="updateStepEdit(dataUser?.id, 1)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>cached</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-6">
+            <label for="description_user" class="form-label"><cite>Puede agregar su observación
+                aquí(<b>Opcional</b>)</cite></label>
+            <textarea class="form-control" id="description_user" rows="3"
+              readOnly>{{ dataClient?.description_user }}</textarea>
+          </div>
+          <div class="col-md-6">
+            <form [formGroup]="clientForm">
+              <label for="description_admin" class="form-label"><cite>Observación de tus datos</cite></label>
+              <textarea class="form-control" id="description_admin" formControlName="description_admin"
+                rows="3"></textarea>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noClient>
+        <h2>Cliente</h2>
+        <cite>Sin archivos</cite>
+      </ng-template>
+    </dd>
+
+    <!-- PROVEEDORES -->
+    <dd class="col-md-12 mt-3">
+      <ng-container *ngIf="dataSupplier && dataSupplier?.file; else noSupplier">
+        <div class="row">
+          <div class="col-md-2">
+            <h2>Proveedor</h2>
+          </div>
+          <div class="col-md-5">
+            <a mat-stroked-button [href]=" dataSupplier?.file" download>
+              <span>Descargar</span>
+              <mat-icon class="check_circle">check_circle</mat-icon>
+            </a>
+          </div>
+          <div class="col-md-5 text-end">
+            <button class="blur" (click)="supplierDescriptionAdmin(dataSupplier?.id)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button class="success ms-2" (click)="updateStepEdit(dataUser?.id, 2)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>cached</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-6">
+            <label for="description_user" class="form-label"><cite>Puede agregar su observación
+                aquí(<b>Opcional</b>)</cite></label>
+            <textarea class="form-control" id="description_user" rows="3"
+              readOnly>{{ dataSupplier?.description_user }}</textarea>
+          </div>
+          <div class="col-md-6">
+            <form [formGroup]="supplierForm">
+              <label for="description_admin" class="form-label"><cite>Observación de tus datos</cite></label>
+              <textarea class="form-control" id="description_admin" formControlName="description_admin"
+                rows="3"></textarea>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noSupplier>
+        <h2>Proveedor</h2>
+        <cite>Sin archivos</cite>
+      </ng-template>
+    </dd>
+
+    <!-- RETENCIONES -->
+    <dd class="col-md-12 mt-3">
+      <ng-container *ngIf="dataRetention && dataRetention?.file; else noRetencion">
+        <div class="row">
+          <div class="col-md-2">
+            <h2>Retenciones</h2>
+          </div>
+          <div class="col-md-5">
+            <a mat-stroked-button [href]=" dataRetention.file" download>
+              <span>Descargar</span>
+              <mat-icon class="check_circle">check_circle</mat-icon>
+            </a>
+          </div>
+          <div class="col-md-5 text-end">
+            <button class="blur" (click)="retentionsDescriptionAdmin(dataRetention?.id)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button class="success ms-2" (click)="updateStepEdit(dataUser?.id, 3)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>cached</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-6">
+            <label for="description_user" class="form-label"><cite>Puede agregar su observación
+                aquí(<b>Opcional</b>)</cite></label>
+            <textarea class="form-control" id="description_user" rows="3"
+              readOnly>{{ dataRetention?.description_user }}</textarea>
+          </div>
+          <div class="col-md-6">
+            <form [formGroup]="retentionForm">
+              <label for="description_admin" class="form-label"><cite>Observación de tus datos</cite></label>
+              <textarea class="form-control" id="description_admin" formControlName="description_admin"
+                rows="3"></textarea>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noRetencion>
+        <h2>Retenciones</h2>
+        <cite>Sin archivos</cite>
+      </ng-template>
+    </dd>
+
+    <!-- PRODUCTOS SERVICIOS -->
+    <dd class="col-md-12 mt-3">
+      <ng-container *ngIf="dataProductServices && dataProductServices?.file; else noProduct">
+        <div class="row">
+          <div class="col-md-3">
+            <h2>Producto-Servicios</h2>
+          </div>
+          <div class="col-md-4">
+            <a mat-stroked-button [href]=" dataProductServices?.file" download>
+              <span>Descargar</span>
+              <mat-icon class="check_circle">check_circle</mat-icon>
+            </a>
+          </div>
+          <div class="col-md-5 text-end">
+            <button class="blur" (click)="productServiceDescriptionAdmin(dataProductServices?.id)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button class="success ms-2" (click)="updateStepEdit(dataUser?.id, 4)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>cached</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-6">
+            <label for="description_user" class="form-label"><cite>Puede agregar su observación
+                aquí(<b>Opcional</b>)</cite></label>
+            <textarea class="form-control" id="description_user" rows="3"
+              readOnly>{{ dataProductServices?.description_user }}</textarea>
+          </div>
+          <div class="col-md-6">
+            <form [formGroup]="productServicesForm">
+              <label for="description_admin" class="form-label"><cite>Observación de tus datos</cite></label>
+              <textarea class="form-control" id="description_admin" formControlName="description_admin"
+                rows="3"></textarea>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noProduct>
+        <h2>Productos-Servicos</h2>
+        <cite>Sin archivos</cite>
+      </ng-template>
+    </dd>
+
+    <!-- EMPLEADOS -->
+    <dd class="col-md-12 mt-3">
+      <ng-container *ngIf="dataemployed && dataemployed?.file; else noEmployee">
+        <div class="row">
+          <div class="col-md-2">
+            <h2>Empleados</h2>
+          </div>
+          <div class="col-md-5">
+            <a mat-stroked-button [href]=" dataemployed?.file" download>
+              <span>Descargar</span>
+              <mat-icon class="check_circle">check_circle</mat-icon>
+            </a>
+          </div>
+          <div class="col-md-5 text-end">
+            <button class="blur" (click)="employeeDescriptionAdmin(dataemployed?.id)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button class="success ms-2" (click)="updateStepEdit(dataUser?.id, 5)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>cached</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-6">
+            <label for="description_user" class="form-label"><cite>Puede agregar su observación
+                aquí(<b>Opcional</b>)</cite></label>
+            <textarea class="form-control" id="description_user" rows="3"
+              readOnly>{{ dataemployed?.description_user }}</textarea>
+          </div>
+          <div class="col-md-6">
+            <form [formGroup]="employeeForm">
+              <label for="description_admin" class="form-label"><cite>Observación de tus datos</cite></label>
+              <textarea class="form-control" id="description_admin" formControlName="description_admin"
+                rows="3"></textarea>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noEmployee>
+        <h2>Empleados</h2>
+        <cite>Sin archivos</cite>
+      </ng-template>
+    </dd>
+
+    <!-- CONCEPTO DE NOMINA -->
+    <dd class="col-md-12 mt-3">
+      <ng-container *ngIf="dataPayrollConcept && dataPayrollConcept?.file; else noNomina">
+        <div class="row">
+          <div class="col-md-3">
+            <h2>Concepto de Nomina</h2>
+          </div>
+          <div class="col-md-4">
+            <a mat-stroked-button [href]=" dataPayrollConcept?.file" download>
+              <span>Descargar</span>
+              <mat-icon class="check_circle">check_circle</mat-icon>
+            </a>
+          </div>
+          <div class="col-md-5 text-end">
+            <button class="blur" (click)="payrollConceptsDescriptionAdmin(dataPayrollConcept?.id)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button class="success ms-2" (click)="updateStepEdit(dataUser?.id, 6)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>cached</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-6">
+            <label for="description_user" class="form-label"><cite>Puede agregar su observación
+                aquí(<b>Opcional</b>)</cite></label>
+            <textarea class="form-control" id="description_user" rows="3"
+              readOnly>{{ dataPayrollConcept?.description_user }}</textarea>
+          </div>
+          <div class="col-md-6">
+            <form [formGroup]="payrollConceptForm">
+              <label for="description_admin" class="form-label"><cite>Observación de tus datos</cite></label>
+              <textarea class="form-control" id="description_admin" formControlName="description_admin"
+                rows="3"></textarea>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noNomina>
+        <h2>Concepto de Nomina</h2>
+        <cite>Sin archivos</cite>
+      </ng-template>
+    </dd>
+
+    <!-- BANCOS -->
+    <dd class="col-md-12 mt-3">
+      <ng-container *ngIf="dataBank && dataBank?.file; else noBank">
+        <div class="row">
+          <div class="col-md-2">
+            <h2>Bancos</h2>
+          </div>
+          <div class="col-md-5">
+            <a mat-stroked-button [href]=" dataBank?.file" download>
+              <span>Descargar</span>
+              <mat-icon class="check_circle">check_circle</mat-icon>
+            </a>
+          </div>
+          <div class="col-md-5 text-end">
+            <button class="blur" (click)="bankDescriptionAdmin(dataBank?.id)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button class="success ms-2" (click)="updateStepEdit(dataUser?.id, 7)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>cached</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-6">
+            <label for="description_user" class="form-label"><cite>Puede agregar su observación
+                aquí(<b>Opcional</b>)</cite></label>
+            <textarea class="form-control" id="description_user" rows="3"
+              readOnly>{{ dataBank?.description_user }}</textarea>
+          </div>
+          <div class="col-md-6">
+            <form [formGroup]="bankForm">
+              <label for="description_admin" class="form-label"><cite>Observación de tus datos</cite></label>
+              <textarea class="form-control" id="description_admin" formControlName="description_admin"
+                rows="3"></textarea>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noBank>
+        <h2>Bancos</h2>
+        <cite>Sin archivos</cite>
+      </ng-template>
+    </dd>
+
+    <!-- PLAN DE CUENTAS -->
+    <dd class="col-md-12 mt-3">
+      <ng-container *ngIf="dataAccountPlan && dataAccountPlan?.file; else noAccountPlan">
+        <div class="row">
+          <div class="col-md-3">
+            <h2>Plan de Cuentas</h2>
+          </div>
+          <div class="col-md-4">
+            <a mat-stroked-button [href]=" dataAccountPlan?.file" download>
+              <span>Descargar</span>
+              <mat-icon class="check_circle">check_circle</mat-icon>
+            </a>
+          </div>
+          <div class="col-md-5 text-end">
+            <button class="blur" (click)="accountPlanDescriptionAdmin(dataAccountPlan?.id)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button class="success ms-2" (click)="updateStepEdit(dataUser?.id, 8)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>cached</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-6">
+            <label for="description_user" class="form-label"><cite>Puede agregar su observación
+                aquí(<b>Opcional</b>)</cite></label>
+            <textarea class="form-control" id="description_user" rows="3"
+              readOnly>{{ dataAccountPlan?.description_user }}</textarea>
+          </div>
+          <div class="col-md-6">
+            <form [formGroup]="accountPlanForm">
+              <label for="description_admin" class="form-label"><cite>Observación de tus datos</cite></label>
+              <textarea class="form-control" id="description_admin" formControlName="description_admin"
+                rows="3"></textarea>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noAccountPlan>
+        <h2>Plan de Cuentas</h2>
+        <cite>Sin archivos</cite>
+      </ng-template>
+    </dd>
+
+    <!-- UUARIOS Y PERFILES -->
+    <dd class="col-md-12 mt-3">
+      <ng-container *ngIf="dataUserProfile && dataUserProfile?.file; else noUserProfiles">
+        <div class="row">
+          <div class="col-md-3">
+            <h2>Usuarios y Perfiles</h2>
+          </div>
+          <div class="col-md-4">
+            <a mat-stroked-button [href]=" dataUserProfile?.file" download>
+              <span>Descargar</span>
+              <mat-icon class="check_circle">check_circle</mat-icon>
+            </a>
+          </div>
+          <div class="col-md-5 text-end">
+            <button class="blur" (click)="userProfilesDescriptionAdmin(dataUserProfile?.id)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button class="success ms-2" (click)="updateStepEdit(dataUser?.id, 9)" mat-mini-fab
+              aria-label="Example icon button with a home icon">
+              <mat-icon>cached</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-6">
+            <label for="description_user" class="form-label"><cite>Puede agregar su observación
+                aquí(<b>Opcional</b>)</cite></label>
+            <textarea class="form-control" id="description_user" rows="3"
+              readOnly>{{ dataUserProfile?.description_user }}</textarea>
+          </div>
+          <div class="col-md-6">
+            <form [formGroup]="userProfilesForm">
+              <label for="description_admin" class="form-label"><cite>Observación de tus datos</cite></label>
+              <textarea class="form-control" id="description_admin" formControlName="description_admin"
+                rows="3"></textarea>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noUserProfiles>
+        <h2>Usuarios y Perfiles</h2>
+        <cite>Sin archivos</cite>
+      </ng-template>
+    </dd>
+
+  </dl>
+</div>
+
+</div>
+
+</div>

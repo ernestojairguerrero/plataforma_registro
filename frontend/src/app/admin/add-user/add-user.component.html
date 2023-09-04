@@ -1,0 +1,57 @@
+<app-sidebar></app-sidebar>
+
+<div class="container pt-5">
+  <div class="row justify-content-md-center">
+    <form [formGroup]="userForm" class="col-md-4 align-items-center">
+      <h1 class="title"><strong>Registro de usuario</strong></h1>
+     <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="Nombre" type="text" formControlName="name">
+      </mat-form-field>
+     </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido</mat-label>
+          <input matInput placeholder="Apellido" type="text" formControlName="last_name">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Correo eléctronico</mat-label>
+          <input matInput placeholder="Correo eléctronico" type="email" formControlName="email">
+        </mat-form-field>
+      </div>
+
+     <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" type="password" formControlName="password">
+      </mat-form-field>
+     </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo usuario</mat-label>
+          <mat-select formControlName="role_id">
+            <mat-option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="button-container text-end">
+        <ng-container *ngIf="userForm.valid; else noValid">
+          <button mat-stroked-button class="blur" (click)="addUser()">Agregar</button>
+        </ng-container>
+
+        <ng-template #noValid>
+          <button  mat-stroked-button (click)="validateForm()" disabled class="gray">Agregar</button>
+        </ng-template>
+      </div>
+    </form>
+
+
+
+  </div>
+</div>

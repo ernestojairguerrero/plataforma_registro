@@ -1,0 +1,42 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+a{
+  color: var(--white) !important;
+  text-decoration: none !important;
+}
+.stepper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  background-color: #ccc;
+  margin: 10px;
+  transition: 0.5s;
+}
+
+.step.active {
+  background-color: #000;
+  color: #fff;
+}
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+}

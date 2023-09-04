@@ -1,0 +1,48 @@
+<app-header></app-header>
+<app-step-step></app-step-step>
+<div>
+  <ng-container *ngIf="users?.step >= 0 && users?.step <= 10 && users?.step_edit === 0">
+    <app-company></app-company>
+  </ng-container>
+
+  <ng-container *ngIf="users?.step >= 1 && users?.step <= 10 && users?.step_edit === 1">
+    <app-client></app-client>
+  </ng-container>
+
+  <ng-container *ngIf="users?.step >= 2 && users?.step <= 10 && users?.step_edit === 2">
+    <app-supplier></app-supplier>
+  </ng-container>
+
+  <ng-container *ngIf="users?.step >= 3 && users?.step <= 10 && users?.step_edit === 3">
+    <app-retention></app-retention>
+  </ng-container>
+
+  <ng-container *ngIf="users?.step >= 4 && users?.step <= 10 && users?.step_edit === 4">
+    <app-product-services></app-product-services>
+  </ng-container>
+
+  <ng-container *ngIf="users?.step >= 5 && users?.step <= 10 && users?.step_edit === 5">
+    <app-employee></app-employee>
+  </ng-container>
+
+  <ng-container *ngIf="users?.step >= 6 && users?.step <= 10 && users?.step_edit === 6">
+    <app-payroll-concept></app-payroll-concept>
+  </ng-container>
+
+  <ng-container *ngIf="users?.step >= 7 && users?.step <= 10 && users?.step_edit === 7">
+    <app-bank></app-bank>
+  </ng-container>
+
+  <ng-container *ngIf="users?.step >= 8 && users?.step <= 10 && users?.step_edit === 8">
+    <app-account-plan></app-account-plan>
+  </ng-container>
+
+  <ng-container *ngIf="users?.step >= 9 && users?.step <= 10 && users?.step_edit === 9">
+    <app-user-profile></app-user-profile>
+  </ng-container>
+  <ng-container *ngIf="users?.step === 10 && users?.step_edit === 10">
+    <div class="container mt-5">
+      <h1>Finalizado...</h1>
+    </div>
+  </ng-container>
+</div>
